@@ -90,7 +90,7 @@ class SpoolmanLowStock(BasePlugin):
         filtered.sort(key=lambda item: item["remaining_weight"])
 
         total_low = len(filtered)
-        total_critical = sum(1 for item in filtered if item["status"] == "critical")
+        total_critical = sum(1 for item in filtered if item["status"] == "Critical")
         items = filtered[:max_items]
 
         if not items:
@@ -105,6 +105,8 @@ class SpoolmanLowStock(BasePlugin):
                 "color_hex": "",
                 "status": "All Good",
             }]
+            total_low = 0
+            total_critical = 0
 
         width, height = device_config.get_resolution()
         if device_config.get_config("orientation") == "vertical":

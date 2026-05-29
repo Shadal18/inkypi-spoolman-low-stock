@@ -5,7 +5,6 @@
 >
   <div class="header">
     <div>
-      <div class="eyebrow">Spoolman Inventory</div>
       <div class="title">{{ title }}</div>
     </div>
 
@@ -23,7 +22,8 @@
         {%
         if
         item.color_hex
-        %}style="background: #{{ item.color_hex | replace('#', '') }};"
+        %}
+        style="background: #{{ item.color_hex | replace('#', '') }};"
         {%
         endif
         %}
