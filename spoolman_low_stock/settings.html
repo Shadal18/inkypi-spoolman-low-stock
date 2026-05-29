@@ -1,43 +1,43 @@
 <div class="form-group">
-  <label for="title" class="form-label">Header Text</label>
-  <input id="title" name="title" type="text" class="form-input" placeholder="Low Stock Filament" />
+  <label for="title" class="form-label">Header Text:</label>
+  <input type="text" id="title" name="title" placeholder="Low Stock Filament" class="form-input" />
 </div>
 
 <div class="form-group">
-  <label for="spoolman_url" class="form-label">Spoolman URL</label>
+  <label for="spoolman_url" class="form-label">Spoolman URL:</label>
   <input
+    type="text"
     id="spoolman_url"
     name="spoolman_url"
-    type="text"
+    placeholder="http://spoolman.local:7912"
     class="form-input"
-    placeholder="http://spoolman.lan"
     required
   />
 </div>
 
 <div class="form-group">
-  <label for="materials" class="form-label">Material Filter</label>
-  <input id="materials" name="materials" type="text" class="form-input" placeholder="PLA,PETG,ASA" />
+  <label for="materials" class="form-label">Material Filter:</label>
+  <input type="text" id="materials" name="materials" placeholder="PLA,PETG,ASA" class="form-input" />
   <small>Optional comma-separated filter. Leave blank to show all materials.</small>
 </div>
 
 <div class="form-group">
-  <label for="low_threshold" class="form-label">Low Threshold (g)</label>
-  <input id="low_threshold" name="low_threshold" type="number" class="form-input" placeholder="250" />
+  <label for="low_threshold" class="form-label">Low Threshold (g):</label>
+  <input type="number" id="low_threshold" name="low_threshold" placeholder="250" class="form-input" />
 </div>
 
 <div class="form-group">
-  <label for="critical_threshold" class="form-label">Critical Threshold (g)</label>
-  <input id="critical_threshold" name="critical_threshold" type="number" class="form-input" placeholder="100" />
+  <label for="critical_threshold" class="form-label">Critical Threshold (g):</label>
+  <input type="number" id="critical_threshold" name="critical_threshold" placeholder="100" class="form-input" />
 </div>
 
 <div class="form-group">
-  <label for="max_items" class="form-label">Max Rows</label>
-  <input id="max_items" name="max_items" type="number" class="form-input" placeholder="5" />
+  <label for="max_items" class="form-label">Max Rows:</label>
+  <input type="number" id="max_items" name="max_items" placeholder="5" class="form-input" />
 </div>
 
 <div class="form-group">
-  <label for="hide_empty" class="form-label">Hide Empty Spools</label>
+  <label for="hide_empty" class="form-label">Hide Empty Spools:</label>
   <select id="hide_empty" name="hide_empty" class="form-input">
     <option value="true">Yes</option>
     <option value="false">No</option>
@@ -111,7 +111,7 @@
 
     if (typeof loadPluginSettings !== "undefined" && loadPluginSettings) {
       if (titleInput) titleInput.value = pluginSettings.title || "Low Stock Filament"
-      if (urlInput) urlInput.value = pluginSettings.spoolman_url || "http://spoolman.lan"
+      if (urlInput) urlInput.value = pluginSettings.spoolman_url || "http://spoolman.local:7912"
       if (materialsInput) materialsInput.value = pluginSettings.materials || ""
       if (lowInput) lowInput.value = pluginSettings.low_threshold || "250"
       if (criticalInput) criticalInput.value = pluginSettings.critical_threshold || "100"
@@ -119,7 +119,7 @@
       if (hideEmptyInput) hideEmptyInput.value = pluginSettings.hide_empty || "true"
     } else {
       if (titleInput) titleInput.value = "Low Stock Filament"
-      if (urlInput) urlInput.value = "http://spoolman.lan"
+      if (urlInput) urlInput.value = "http://spoolman.local:7912"
       if (materialsInput) materialsInput.value = ""
       if (lowInput) lowInput.value = "250"
       if (criticalInput) criticalInput.value = "100"

@@ -73,7 +73,7 @@ class SpoolmanLowStock(BasePlugin):
             location = spool.get("location") or ""
             used_weight = safe_float(spool.get("used_weight"), 0)
 
-            status = "critical" if remaining_weight <= critical_threshold else "low"
+            status = "Critical" if remaining_weight <= critical_threshold else "Low"
 
             filtered.append({
                 "id": spool.get("id"),
@@ -103,7 +103,7 @@ class SpoolmanLowStock(BasePlugin):
                 "used_weight": 0,
                 "location": "",
                 "color_hex": "",
-                "status": "ok",
+                "status": "All Good",
             }]
 
         width, height = device_config.get_resolution()
