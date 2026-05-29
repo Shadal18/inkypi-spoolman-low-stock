@@ -1,38 +1,49 @@
 {% extends "plugin.html" %} {% block content %}
 <div
-  class="container"
+  class="screen"
   style="color: {{ plugin_settings.text_color }}; background-color: {{ plugin_settings.background_color }};"
 >
   <div class="header">
-    <div class="title-block">
-      <p class="label">{{ title }}</p>
-      <p class="summary">
-        <span>{{ total_critical }} critical</span>
-        <span>•</span>
-        <span>{{ total_low }} low</span>
-      </p>
+    <div>
+      <div class="eyebrow">Spoolman Inventory</div>
+      <div class="title">{{ title }}</div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-pill critical">{{ total_critical }} critical</div>
+      <div class="summary-pill low">{{ total_low }} low</div>
     </div>
   </div>
 
   <div class="list">
     {% for item in items %}
-    <div class="row">
-      <div class="left">
+    <div class="row status-{{ item.status|lower }}">
+      <div
+        class="color-chip"
+        {%
+        if
+        item.color_hex
+        %}style="background: #{{ item.color_hex | replace('#', '') }};"
+        {%
+        endif
+        %}
+      ></div>
+
+      <div class="main">
         <div class="name">{{ item.name }}</div>
         <div class="meta">
-          {% if item.vendor %}<span>{{ item.vendor }}</span>{% endif %} {% if item.material %}<span
-            >• {{ item.material }}</span
-          >{% endif %} {% if item.location %}<span>• {{ item.location }}</span>{% endif %}
+          {{ item.vendor }}{% if item.material %} • {{ item.material }}{% endif %}{% if item.location %} • {{
+          item.location }}{% endif %}
         </div>
       </div>
 
-      <div class="right">
+      <div class="grams">
         {% if item.id %}
-        <div class="grams">{{ item.remaining_weight }}g</div>
-        <div class="status">{{ item.status }}</div>
+        <div class="grams-value">{{ item.remaining_weight }}g</div>
+        <div class="grams-label">{{ item.status }}</div>
         {% else %}
-        <div class="grams">OK</div>
-        <div class="status">nothing low</div>
+        <div class="grams-value">OK</div>
+        <div class="grams-label">nothing low</div>
         {% endif %}
       </div>
     </div>
@@ -40,8 +51,8 @@
   </div>
 
   <div class="footer">
-    <span>Low ≤ {{ low_threshold }}g</span>
-    <span>Critical ≤ {{ critical_threshold }}g</span>
+    <div>Low ≤ {{ low_threshold }}g</div>
+    <div>Critical ≤ {{ critical_threshold }}g</div>
   </div>
 </div>
 {% endblock %}
