@@ -1,0 +1,55 @@
+{% extends "plugin.html" %} {% block content %}
+<div class="screen">
+  <div class="header">
+    <div>
+      <div class="eyebrow">Spoolman Inventory</div>
+      <div class="title">{{ title }}</div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-pill critical">{{ total_critical }} critical</div>
+      <div class="summary-pill low">{{ total_low }} low</div>
+    </div>
+  </div>
+
+  <div class="list">
+    {% for item in items %}
+    <div class="row status-{{ item.status }}">
+      <div
+        class="color-chip"
+        {%
+        if
+        item.color_hex
+        %}style="background: #{{ item.color_hex | replace('#', '') }};"
+        {%
+        endif
+        %}
+      ></div>
+
+      <div class="main">
+        <div class="name">{{ item.name }}</div>
+        <div class="meta">
+          {{ item.vendor }}{% if item.material %} • {{ item.material }}{% endif %}{% if item.location %} • {{
+          item.location }}{% endif %}
+        </div>
+      </div>
+
+      <div class="grams">
+        {% if item.id %}
+        <div class="grams-value">{{ item.remaining_weight }}g</div>
+        <div class="grams-label">{{ item.status }}</div>
+        {% else %}
+        <div class="grams-value">OK</div>
+        <div class="grams-label">nothing low</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="footer">
+    <div>Low ≤ {{ low_threshold }}g</div>
+    <div>Critical ≤ {{ critical_threshold }}g</div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+<div class="form-group">
+  <label for="title" class="form-label">Header Text</label>
+  <input id="title" name="title" type="text" class="form-input" placeholder="Low Stock Filament" />
+</div>
+
+<div class="form-group">
+  <label for="spoolman_url" class="form-label">Spoolman URL</label>
+  <input
+    id="spoolman_url"
+    name="spoolman_url"
+    type="text"
+    class="form-input"
+    placeholder="http://spoolman.lan"
+    required
+  />
+</div>
+
+<div class="form-group">
+  <label for="materials" class="form-label">Material Filter</label>
+  <input id="materials" name="materials" type="text" class="form-input" placeholder="PLA,PETG,ASA" />
+  <small>Optional comma-separated filter. Leave blank to show all materials.</small>
+</div>
+
+<div class="form-group">
+  <label for="low_threshold" class="form-label">Low Threshold (g)</label>
+  <input id="low_threshold" name="low_threshold" type="number" class="form-input" placeholder="250" />
+</div>
+
+<div class="form-group">
+  <label for="critical_threshold" class="form-label">Critical Threshold (g)</label>
+  <input id="critical_threshold" name="critical_threshold" type="number" class="form-input" placeholder="100" />
+</div>
+
+<div class="form-group">
+  <label for="max_items" class="form-label">Max Rows</label>
+  <input id="max_items" name="max_items" type="number" class="form-input" placeholder="5" />
+</div>
+
+<div class="form-group">
+  <label for="hide_empty" class="form-label">Hide Empty Spools</label>
+  <select id="hide_empty" name="hide_empty" class="form-input">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+  </select>
+</div>
+
+<hr style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.12); margin: 24px 0 18px" />
+
+<div class="form-group" style="margin-bottom: 20px">
+  <div
+    style="
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #555;
+      margin-bottom: 10px;
+    "
+  >
+    Plugin Repository
+  </div>
+
+  <div style="background: #f8f9fa; border: 1px solid #dcdfe3; border-radius: 10px; padding: 14px 16px">
+    <a
+      href="https://github.com/shadal18/inkypi-spoolman-low-stock"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        word-break: break-word;
+        display: inline-block;
+        margin-bottom: 6px;
+      "
+    >
+      github.com/shadal18/inkypi-spoolman-low-stock
+    </a>
+
+    <div style="font-size: 0.9rem; color: #666">Setup help, updates, release notes, and source code.</div>
+  </div>
+</div>
+
+<style>
+  .floatingchat-container-wrap,
+  .floating-chat-kofi-popup-iframe {
+    left: unset !important;
+    right: 16px !important;
+  }
+
+  .floatingchat-container-wrap {
+    bottom: 14px !important;
+  }
+
+  .floating-chat-kofi-popup-iframe {
+    bottom: 76px !important;
+  }
+</style>
+
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const titleInput = document.getElementById("title")
+    const urlInput = document.getElementById("spoolman_url")
+    const materialsInput = document.getElementById("materials")
+    const lowInput = document.getElementById("low_threshold")
+    const criticalInput = document.getElementById("critical_threshold")
+    const maxItemsInput = document.getElementById("max_items")
+    const hideEmptyInput = document.getElementById("hide_empty")
+
+    if (typeof loadPluginSettings !== "undefined" && loadPluginSettings) {
+      if (titleInput) titleInput.value = pluginSettings.title || "Low Stock Filament"
+      if (urlInput) urlInput.value = pluginSettings.spoolman_url || "http://spoolman.lan"
+      if (materialsInput) materialsInput.value = pluginSettings.materials || ""
+      if (lowInput) lowInput.value = pluginSettings.low_threshold || "250"
+      if (criticalInput) criticalInput.value = pluginSettings.critical_threshold || "100"
+      if (maxItemsInput) maxItemsInput.value = pluginSettings.max_items || "5"
+      if (hideEmptyInput) hideEmptyInput.value = pluginSettings.hide_empty || "true"
+    } else {
+      if (titleInput) titleInput.value = "Low Stock Filament"
+      if (urlInput) urlInput.value = "http://spoolman.lan"
+      if (materialsInput) materialsInput.value = ""
+      if (lowInput) lowInput.value = "250"
+      if (criticalInput) criticalInput.value = "100"
+      if (maxItemsInput) maxItemsInput.value = "5"
+      if (hideEmptyInput) hideEmptyInput.value = "true"
+    }
+
+    if (typeof kofiWidgetOverlay !== "undefined") {
+      kofiWidgetOverlay.draw("shadal", {
+        type: "floating-chat",
+        "floating-chat.donateButton.text": "I ❤️ Coffee",
+        "floating-chat.donateButton.background-color": "#00b9fe",
+        "floating-chat.donateButton.text-color": "#fff",
+      })
+    }
+  })
+</script>
